@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.IntroduceMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.Introduce">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="iid" jdbcType="INTEGER" property="iid" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="management_model" jdbcType="VARCHAR" property="managementModel" />
+    <result column="company_introduce" jdbcType="VARCHAR" property="companyIntroduce" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+  </resultMap>
+</mapper>
