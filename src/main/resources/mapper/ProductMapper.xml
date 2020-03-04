@@ -7,8 +7,7 @@
     -->
     <id column="pid" jdbcType="INTEGER" property="pid" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+    <result column="product_time" jdbcType="TIMESTAMP" property="productTime" />
   </resultMap>
 </mapper>

@@ -10,7 +10,7 @@ public class Types {
     @Column(name = "type_name")
     private String typeName;
 
-    private String describe;
+    private String describes;
 
     @Column(name = "type_time")
     private Date typeTime;
@@ -44,17 +44,17 @@ public class Types {
     }
 
     /**
-     * @return describe
+     * @return describes
      */
-    public String getDescribe() {
-        return describe;
+    public String getDescribes() {
+        return describes;
     }
 
     /**
-     * @param describe
+     * @param describes
      */
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescribes(String describes) {
+        this.describes = describes;
     }
 
     /**

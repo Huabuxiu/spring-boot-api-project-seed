@@ -4,7 +4,7 @@ import com.company.project.core.Service;
 
 
 /**
- * Created by  on 2020/03/03.
+ * Created by  on 2020/03/04.
  */
 public interface ProductService extends Service<Product> {
 

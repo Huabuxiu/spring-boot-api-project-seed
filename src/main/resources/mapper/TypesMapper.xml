@@ -7,7 +7,7 @@
     -->
     <id column="tid" jdbcType="INTEGER" property="tid" />
     <result column="type_name" jdbcType="VARCHAR" property="typeName" />
-    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="describes" jdbcType="VARCHAR" property="describes" />
     <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
   </resultMap>
 </mapper>

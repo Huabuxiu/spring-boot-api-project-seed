@@ -119,3 +119,28 @@ CREATE TABLE `introduce` (
                         `logo` varchar(255) NOT NULL ,
                         PRIMARY KEY (`iid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+
+-- ----------------------------
+-- Table structure for product (update)
+-- ----------------------------
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+                           `pid` int(11) NOT NULL AUTO_INCREMENT,
+                           `product_name` varchar(255) NOT NULL,
+                           `url` varchar(255) NOT NULL ,
+                           `type_time` datetime  NOT NULL,
+                           PRIMARY KEY (`pid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for product_types
+-- ----------------------------
+DROP TABLE IF EXISTS `product_types`;
+CREATE TABLE `product_types` (
+                           `pid` int(11) NOT NULL,
+                           `tid` int(11) NOT NULL ,
+                           FOREIGN KEY (`tid`) REFERENCES types(tid),
+                           FOREIGN KEY (`pid`) REFERENCES product(pid)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;

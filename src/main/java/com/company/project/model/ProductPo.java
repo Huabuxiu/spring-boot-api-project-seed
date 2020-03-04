@@ -1,19 +1,22 @@
 package com.company.project.model;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
-import javax.persistence.*;
 
-public class Product {
+public class ProductPo {
     @Id
     private Integer pid;
 
     @Column(name = "product_name")
     private String productName;
 
+    @Column(name = "type_name")
+    private String typeName;
+
     private String url;
 
-    @Column(name = "product_time")
-    private Date productTime;
+
 
     /**
      * @return pid
@@ -57,17 +60,11 @@ public class Product {
         this.url = url;
     }
 
-    /**
-     * @return product_time
-     */
-    public Date getProductTime() {
-        return productTime;
-    }
-
-    /**
-     * @param productTime
-     */
-    public void setProductTime(Date productTime) {
-        this.productTime = productTime;
+    @Override
+    public String toString() {
+        return "{ \"productName=\":\"" + productName + "\"" +
+                ",\" typeName=\":\"" + typeName +"\"" +
+                ", \"url\":\"" + url + "\"" +
+                '}';
     }
 }
