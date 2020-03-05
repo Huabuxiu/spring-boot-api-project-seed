@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 控制用户登录
 * Created by  on 2020/03/03.
 */
 @RestController
@@ -22,6 +23,8 @@ public class UserController {
     @Resource
     private UserService userService;
 
+
+//登录
     @PostMapping("/login")
     public Result login(@RequestParam(value = "username",required = true) String username) {
         User user = userService.findBy("username",username);
@@ -32,6 +35,7 @@ public class UserController {
         return ResultGenerator.genSuccessResult(state);
     }
 
+//    新增
     @PostMapping("/add")
     public Result add(User user) {
         userService.save(user);

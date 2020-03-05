@@ -14,6 +14,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ *
+ * 控制联系我们功能
 * Created by  on 2020/03/03.
 */
 @RestController
@@ -22,10 +24,11 @@ public class ContactController {
     @Resource
     private ContactService contactService;
 
+//   新增联系我们
     @PostMapping("/add")
     public Result add(Contact contact) {
-        contactService.save(contact);
-        return ResultGenerator.genSuccessResult();
+        contactService.save(contact);//存数据库
+        return ResultGenerator.genSuccessResult();//返回结果
     }
 
     @PostMapping("/delete")

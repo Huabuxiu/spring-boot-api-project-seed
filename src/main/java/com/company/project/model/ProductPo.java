@@ -39,6 +39,15 @@ public class ProductPo {
         return productName;
     }
 
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
     /**
      * @param productName
      */

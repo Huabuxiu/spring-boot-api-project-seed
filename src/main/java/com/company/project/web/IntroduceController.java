@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 控制公司介绍功能
 * Created by  on 2020/03/03.
 */
 @RestController
@@ -22,10 +23,11 @@ public class IntroduceController {
     @Resource
     private IntroduceService introduceService;
 
+//    新增
     @PostMapping("/add")
     public Result add(Introduce introduce) {
-        introduceService.save(introduce);
-        return ResultGenerator.genSuccessResult();
+        introduceService.save(introduce); //插入数据库
+        return ResultGenerator.genSuccessResult();//返回结果
     }
 
     @PostMapping("/delete")

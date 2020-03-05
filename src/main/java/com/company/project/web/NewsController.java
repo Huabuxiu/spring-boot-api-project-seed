@@ -14,6 +14,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ *
+ * 农业新闻功能管理
 * Created by  on 2020/03/03.
 */
 @RestController
@@ -22,9 +24,10 @@ public class NewsController {
     @Resource
     private NewsService newsService;
 
+    //新增新闻
     @PostMapping("/add")
     public Result add(News news) {
-        newsService.save(news);
+        newsService.save(news);//往数据库中插入新闻数据
         return ResultGenerator.genSuccessResult();
     }
 
