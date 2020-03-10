@@ -16,7 +16,17 @@ public class ProductPo {
 
     private String url;
 
+    @Column(name = "product_time")
+    private Date productTime;
 
+
+    public Date getProductTime() {
+        return productTime;
+    }
+
+    public void setProductTime(Date productTime) {
+        this.productTime = productTime;
+    }
 
     /**
      * @return pid

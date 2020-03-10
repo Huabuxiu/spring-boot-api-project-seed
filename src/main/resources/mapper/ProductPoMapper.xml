@@ -9,11 +9,12 @@
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="product_time" jdbcType="TIMESTAMP" property="productTime" />
   </resultMap>
 
 
   <select id="getProductPoList" resultMap="ProductPoResultMap">
-    SELECT product.PRODUCT_NAME, product.URL, types.TYPE_NAME
+    SELECT product.PRODUCT_NAME, product.URL,product.product_time, types.TYPE_NAME
             FROM product,types
             WHERE product.pid IN
             (SELECT pid FROM product_types WHERE types.tid = product_types.tid)

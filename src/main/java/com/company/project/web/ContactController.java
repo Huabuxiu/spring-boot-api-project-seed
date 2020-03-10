@@ -1,22 +1,24 @@
 package com.company.project.web;
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
+import com.company.project.model.CompanyMessage;
 import com.company.project.model.Contact;
+import com.company.project.model.ContactCm;
+import com.company.project.model.ContactPo;
+import com.company.project.service.CompanyMessageService;
+import com.company.project.service.ContactCmService;
+import com.company.project.service.ContactPoService;
 import com.company.project.service.ContactService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
- *
- * 控制联系我们功能
-* Created by  on 2020/03/03.
+* Created by  on 2020/03/08.
 */
 @RestController
 @RequestMapping("/contact")
@@ -24,36 +26,40 @@ public class ContactController {
     @Resource
     private ContactService contactService;
 
-//   新增联系我们
-    @PostMapping("/add")
-    public Result add(Contact contact) {
-        contactService.save(contact);//存数据库
-        return ResultGenerator.genSuccessResult();//返回结果
-    }
+    @Resource
+    private ContactPoService contactPoService;
 
-    @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
-        contactService.deleteById(id);
-        return ResultGenerator.genSuccessResult();
-    }
+    @Resource
+    private ContactCmService contactCmService;
+
+    @Resource
+    private CompanyMessageService companyMessageService;
 
     @PostMapping("/update")
-    public Result update(Contact contact) {
+    public Result update(@RequestBody Map<String,String> data) {
+        Contact contact = new Contact();
+        contact.setCid(contactPoService.getContactPoList().get(0).getCid());
+        contact.setAddress(data.get("address"));
+        contact.seteMail(data.get("eMail"));
+        contact.setFax(data.get("fax"));
+        contact.setPhone(data.get("phone"));
+        contact.setQq(data.get("qq"));
+        contact.setTelephone(data.get("telephone"));
+        contact.setZipCode(data.get("zipCode"));
         contactService.update(contact);
-        return ResultGenerator.genSuccessResult();
+        CompanyMessage companyMessage = companyMessageService.findBy("companyName",data.get("companyName"));
+        companyMessage.setCompanyName(data.get("companyName"));
+        companyMessage.setContacts(data.get("contacts"));
+        companyMessageService.update(companyMessage);
+        contactCmService.update(new ContactCm(contact.getCid(),companyMessage.getCmid()));
+        return ResultGenerator.genSuccessResult("更新成功");
     }
 
-    @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
-        Contact contact = contactService.findById(id);
-        return ResultGenerator.genSuccessResult(contact);
-    }
+
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
-        PageHelper.startPage(page, size);
-        List<Contact> list = contactService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+    public Result list() {
+        List<ContactPo> list = contactPoService.getContactPoList();
+        return ResultGenerator.genSuccessResult(list);
     }
 }

@@ -1,8 +1,9 @@
 package com.company.project.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
-public class Introduce {
+public class IntroducePo {
     @Id
     private Integer iid;
 
@@ -13,6 +14,28 @@ public class Introduce {
     private String companyIntroduce;
 
     private String logo;
+
+
+    @Column(name = "company_name")
+    private String companyName;
+
+    private String contacts;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String contacts) {
+        this.contacts = contacts;
+    }
 
     /**
      * @return iid

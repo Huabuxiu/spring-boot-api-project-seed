@@ -26,11 +26,13 @@ public class UserController {
 
 //登录
     @PostMapping("/login")
-    public Result login(@RequestParam(value = "username",required = true) String username) {
-        User user = userService.findBy("username",username);
+    public Result login(User user) {
+        User userTable = userService.findBy("username",user.getUsername());
         String  state = "longin";
-        if (user==null){
+        if (userTable==null){
             return ResultGenerator.genFailResult("用户不存在");
+        }else if (userTable.getPassword().equals (user.getPassword())){
+            return ResultGenerator.genFailResult("用户名密码错误");
         }
         return ResultGenerator.genSuccessResult(state);
     }
@@ -54,17 +56,7 @@ public class UserController {
         return ResultGenerator.genSuccessResult();
     }
 
-    @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
-        User user = userService.findById(id);
-        return ResultGenerator.genSuccessResult(user);
-    }
 
-    @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
-        PageHelper.startPage(page, size);
-        List<User> list = userService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
-    }
+
+
 }

@@ -1,8 +1,8 @@
 package com.company.project.service.impl;
 
-import com.company.project.dao.ProductMapper;
-import com.company.project.model.Product;
-import com.company.project.service.ProductService;
+import com.company.project.dao.ContactCmMapper;
+import com.company.project.model.ContactCm;
+import com.company.project.service.ContactCmService;
 import com.company.project.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class ProductServiceImpl extends AbstractService<Product> implements ProductService {
+public class ContactCmServiceImpl extends AbstractService<ContactCm> implements ContactCmService {
     @Resource
-    private ProductMapper productMapper;
+    private ContactCmMapper contactCmMapper;
 
 }

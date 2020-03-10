@@ -1,8 +1,9 @@
 package com.company.project.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
-public class Contact {
+public class ContactPo {
     @Id
     private Integer cid;
 
@@ -14,6 +15,12 @@ public class Contact {
 
     private String fax;
 
+
+    @Column(name = "company_name")
+    private String companyName;
+
+    private String contacts;
+
     @Column(name = "e_mail")
     private String eMail;
 
@@ -21,6 +28,23 @@ public class Contact {
     private String zipCode;
 
     private String qq;
+
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String contacts) {
+        this.contacts = contacts;
+    }
 
     /**
      * @return cid

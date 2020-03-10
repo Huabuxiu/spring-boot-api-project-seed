@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.company.project.dao.ContactMapper">
-  <resultMap id="BaseResultMap" type="com.company.project.model.Contact">
+<mapper namespace="com.company.project.dao.ContactPoMapper">
+  <resultMap id="ContactPoResultMap" type="com.company.project.model.ContactPo">
     <!--
       WARNING - @mbg.generated
     -->
     <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
@@ -14,4 +16,11 @@
     <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
     <result column="qq" jdbcType="VARCHAR" property="qq" />
   </resultMap>
+
+
+  <select id="getContactPoList" resultMap="ContactPoResultMap">
+    SELECT CID, COMPANY_NAME, CONTACTS, ADDRESS, PHONE, TELEPHONE, FAX, E_MAIL, ZIP_CODE, QQ
+       FROM contact,company_message
+WHERE cid IN (SELECT cid FROM contact_cm WHERE  company_message.cmid = contact_cm.cmid);
+  </select>
 </mapper>
