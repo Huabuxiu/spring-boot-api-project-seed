@@ -14,7 +14,7 @@
 
 
   <select id="getProductPoList" resultMap="ProductPoResultMap">
-    SELECT product.PRODUCT_NAME, product.URL,product.product_time, types.TYPE_NAME
+    SELECT product.pid,product.PRODUCT_NAME, product.URL,product.product_time, types.TYPE_NAME
             FROM product,types
             WHERE product.pid IN
             (SELECT pid FROM product_types WHERE types.tid = product_types.tid)

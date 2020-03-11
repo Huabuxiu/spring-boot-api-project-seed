@@ -1,6 +1,7 @@
 package com.company.project.web;
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
+import com.company.project.model.ProductTypes;
 import com.company.project.model.Types;
 import com.company.project.service.ProductTypesService;
 import com.company.project.service.TypesService;
@@ -31,8 +32,9 @@ public class TypesController {
    //类型新增接口
     @PostMapping("/add")
     public Result add(@RequestBody Map<String,String> data) {
+        System.out.println(data.toString());
         Types types = new Types();
-        types.setDescribes(data.get("describe"));
+        types.setDescribes(data.get("describes"));
         types.setTypeName( data.get("typeName"));
         types.setTypeTime(new  Date());//设置属性
         typesService.save(types);  // 往数据库中存储数据
@@ -42,7 +44,13 @@ public class TypesController {
     //删除类型接口
     @PostMapping("/delete")
     public Result delete(@RequestBody Map<String,Integer> data) { //函数名
-        productTypesService.deleteById(productTypesService.findBy("tid",data.get("id")).getPid());
+        List<ProductTypes> list = productTypesService.findAll();
+        for (ProductTypes type :
+                list) {
+            if (type.getTid() == data.get("id")){
+                return ResultGenerator.genFailResult("该分类下还存在产品，不能删除");//返回结果
+            }
+        }
         typesService.deleteById(data.get("id"));  //从数据库中删除数据
         return ResultGenerator.genSuccessResult();//返回结果
     }
@@ -50,9 +58,10 @@ public class TypesController {
     //修改类型接口
     @PostMapping("/update")
     public Result update(@RequestBody Map<String,Object> data) {//函数名
+        System.out.println(data.toString());
         Types types = new Types();
         types.setTid((Integer) data.get("tid"));
-        types.setDescribes((String) data.get("describe"));
+        types.setDescribes((String) data.get("describes"));
         types.setTypeName((String) data.get("typeName"));
         types.setTypeTime(new  Date());//设置属性
         typesService.update(types); //修改数据库中的数据
